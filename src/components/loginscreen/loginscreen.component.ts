@@ -1,4 +1,5 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { ServiceUsers } from 'src/app/services/serviceusers.service';
 
 @Component({
   selector: 'app-loginscreen',
@@ -10,8 +11,8 @@ export class LoginscreenComponent implements OnInit {
   public active:boolean;
   @ViewChild('user') user:ElementRef;
   @ViewChild('pass') pass:ElementRef;
-  public token :string;
-  constructor() { 
+
+  constructor(private _service:ServiceUsers) { 
     this.user = ElementRef.prototype;
     this.pass = ElementRef.prototype;
   }
@@ -24,18 +25,26 @@ export class LoginscreenComponent implements OnInit {
   }
   login(){
     //Damos acceso a las paginas
-    this.active=true;
     
-    console.log(this.user.nativeElement.value);
-    console.log(this.pass.nativeElement.value);
+    var usuario = this.user.nativeElement.value;
+    var password = this.pass.nativeElement.value;
 
-    //Guardamos el token obtenido del servide
-    this.token ="";
+    console.log(usuario+"  "+password);
+    this._service.login(usuario,password).subscribe(response=>{
+      if(response.auth==true){
+        this.active;
+         //Mostramos los iconos y damos acceso a p2 (la pagina principal de busqueda de usuarios)
+        document.getElementById('uno').style.visibility="visible";
+        document.getElementById('dos').style.visibility="visible";
+        document.getElementById('p2').style.visibility="visible";
+      }else{
 
-    //Mostramos los iconos y damos acceso a p2 (la pagina principal de busqueda de usuarios)
-    document.getElementById('uno').style.visibility="visible";
-    document.getElementById('dos').style.visibility="visible";
-    document.getElementById('p2').style.visibility="visible";
+      }
+    },error=>{
+
+    });
+
+   
   
   }
 

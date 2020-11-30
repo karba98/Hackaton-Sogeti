@@ -16,10 +16,14 @@ export class ServiceUsers {
     }
 
     login (user, password):Observable <any>{
+        console.log(user+"  "+password);
         let request = "/authenticate";
-        let headers = new HttpHeaders();
-        headers.set("password",password);
-        headers.set("user",user);
-        return this._httpService.post(this.url+request,{headers:headers});
+        let headers = new HttpHeaders().set("Content-Type", "application/json");
+        console.log("Entrando al servicio");
+        headers.append("password",password);
+        headers.append("user",user);
+        headers.append('Access-Control-Allow-Origin','/');
+        console.log(headers);
+        return this._httpService.post(this.url+request,null,{headers:headers});
     }
-}s
+}
