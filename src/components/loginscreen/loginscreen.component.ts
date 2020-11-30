@@ -42,13 +42,18 @@ export class LoginscreenComponent implements OnInit {
       }else{
         document.getElementById('userimp').style.border = '1px solid #cc0033';
         document.getElementById('passimp').style.border = '1px solid #cc0033';
-        let br = document.createElement('br');
-        let info = document.createElement('a');
-        info.style.color='red';
-        info.style.fontSize="15px"
-        info.innerText="*Usuario o contraseña incorrectos";
-        document.getElementById('loginformh').appendChild(br);
-        document.getElementById('loginformh').appendChild(info);
+        try{
+          document.getElementById('info').innerText="*Usuario o contraseña incorrectos";
+        }catch(Exception){
+          let br = document.createElement('br');
+          let info = document.createElement('a');
+          info.id="info";
+          info.style.color='red';
+          info.style.fontSize="15px"
+          info.innerText="*Usuario o contraseña incorrectos";
+          document.getElementById('loginformh').appendChild(br);
+          document.getElementById('loginformh').appendChild(info);
+        }
       }
     },error=>{
       
