@@ -22,4 +22,4 @@ export class ServiceUsers {
         headers.set("user",user);
         return this._httpService.post(this.url+request,{headers:headers});
     }
-}s
+}
