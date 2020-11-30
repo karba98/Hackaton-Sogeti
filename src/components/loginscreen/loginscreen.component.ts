@@ -27,8 +27,7 @@ export class LoginscreenComponent implements OnInit {
     document.getElementById('uno').style.visibility="visible";
     document.getElementById('dos').style.visibility="visible";
     document.getElementById('p2').style.visibility="visible";
-
-    
+  
   }
 
 }
