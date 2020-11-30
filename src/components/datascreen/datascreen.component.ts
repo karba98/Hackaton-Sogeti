@@ -7,7 +7,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DatascreenComponent implements OnInit {
 
-  constructor() { }
+  authenticated:boolean
+  constructor() { 
+    this.authenticated=true;
+  }
 
   ngOnInit(): void {
   }

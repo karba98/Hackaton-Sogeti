@@ -1,8 +1,6 @@
-<p>datascreen works!</p>
-<h1>HHHHHHHHHHHHHHHHHHHHHHHH</h1>
-<h1>HHHHHHHHHHHHHHHHHHHHHHHH</h1>
-<h1>HHHHHHHHHHHHHHHHHHHHHHHH</h1>
-<h1>HHHHHHHHHHHHHHHHHHHHHHHH</h1>
-<h1>HHHHHHHHHHHHHHHHHHHHHHHH</h1>
-<h1>HHHHHHHHHHHHHHHHHHHHHHHH</h1>
-<h1>HHHHHHHHHHHHHHHHHHHHHHHH</h1>
+<div *ngIf="authenticated==true else identificate">
+    <h1>Identificado con exito</h1>
+</div>
+<ng-template #Identificate>
+    <h1>Identificate!!</h1>
+</ng-template>
