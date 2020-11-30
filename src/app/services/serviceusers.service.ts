@@ -14,16 +14,19 @@ export class ServiceUsers {
         this.url=Global.url;
         this.token="";
     }
+    
 
     login (user, password):Observable <any>{
         console.log(user+"  "+password);
         let request = "/authenticate";
-        let headers = new HttpHeaders().set("Content-Type", "application/json");
+        let headers = new HttpHeaders({
+            'Content-Type': 'application/json',
+            'user':user,
+            'password':password});
         console.log("Entrando al servicio");
-        headers.append("password",password);
-        headers.append("user",user);
-        headers.append('Access-Control-Allow-Origin','/');
+
         console.log(headers);
+
         return this._httpService.post(this.url+request,null,{headers:headers});
     }
 }
