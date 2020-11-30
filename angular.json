@@ -119,6 +119,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "sogetitablet"
+    }
+  },
+  "defaultProject": "sogetitablet",
+  "cli": {
+    "analytics": false
+  }
 }

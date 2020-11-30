@@ -1,0 +1,96 @@
+@import url(http://weloveiconfonts.com/api/?family=entypo);
+@import url(https://fonts.googleapis.com/css?family=Roboto);
+
+/* zocial */
+[class*="entypo-"]:before {
+  font-family: 'entypo', sans-serif;
+}
+
+*,
+*:before,
+*:after {
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box; 
+}
+
+
+h2 {
+  color:rgba(255,255,255,.8);
+  margin-left:12px;
+}
+
+body {
+  
+  font-family: 'Roboto', sans-serif;
+  
+}
+
+
+form {
+  background:rgba(66, 57, 57, 0.5);
+  padding:20px;
+  border-radius: 5mm;
+  padding-right: 40px;
+  position:relative;
+  margin: 50px auto;
+  top: 30%;
+  width: 440px;
+  height: auto;
+}
+
+input {
+  padding: 16px;
+  border-radius:7px;
+  border:0px;
+  background: rgba(255,255,255,.2);
+  display: block;
+  margin: 15px;
+  width: 300px;  
+  color:white;
+  font-size:18px;
+  height: 54px;
+}
+
+input:focus {
+  outline: none;
+  
+  color: white;
+}
+
+button {
+  float:right;
+  height: 121px;
+  width: 50px;
+  border: 0px;
+  background: #e74c3c;
+  border-radius:7px;
+  padding: 10px;
+  color:white;
+  font-size:22px;
+}
+button:focus{
+  outline: 0;
+}
+.inputUserIcon {
+  position:absolute;
+  top:68px;
+  right: 80px;
+  color:white;
+}
+
+.inputPassIcon {
+  position:absolute;
+  top:136px;
+  right: 80px;
+  color:white;
+}
+
+input::-webkit-input-placeholder {
+  color: white;
+}
+
+input:focus::-webkit-input-placeholder {
+  color: grey;
+  outline: 0;
+}

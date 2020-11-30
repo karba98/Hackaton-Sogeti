@@ -1,0 +1,16 @@
+<div style="width: 100%;height:100%; padding-top: 30px;">
+  <!--background-color: rgba(0, 0, 0, 0.6);-->
+  <div *ngIf="active==false then loginform"></div>
+</div>
+
+<ng-template #loginform>
+  <div>
+    <form >
+      <h2><span class="entypo-login"></span> Login</h2>
+      <button (click)="login()"><span class="entypo-lock"></span></button>
+      <input #user name = "user" type="text" class="user" placeholder="ursername"/>
+      <input #pass name = "pass" type="password" class="pass"placeholder="password"/>
+    </form>
+  </div>
+  
+</ng-template>
