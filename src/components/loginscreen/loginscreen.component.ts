@@ -32,16 +32,26 @@ export class LoginscreenComponent implements OnInit {
     console.log(usuario+"  "+password);
     this._service.login(usuario,password).subscribe(response=>{
       if(response.auth==true){
-        this.active;
-         //Mostramos los iconos y damos acceso a p2 (la pagina principal de busqueda de usuarios)
+        this.active=true;
+        //Mostramos los iconos y damos acceso a p2 (la pagina principal de busqueda de usuarios)
         document.getElementById('uno').style.visibility="visible";
         document.getElementById('dos').style.visibility="visible";
         document.getElementById('p2').style.visibility="visible";
+        //document.getElementById('p2').style.transform= 'translateX(-90%)';
+        //HAY QUE HACER AQUI UN ROUTERLINK O HREF A #T2 PARA QUE SE ACTIVE LA ANIMACION
       }else{
-
+        document.getElementById('userimp').style.border = '1px solid #cc0033';
+        document.getElementById('passimp').style.border = '1px solid #cc0033';
+        let br = document.createElement('br');
+        let info = document.createElement('a');
+        info.style.color='red';
+        info.style.fontSize="15px"
+        info.innerText="*Usuario o contraseña incorrectos";
+        document.getElementById('loginformh').appendChild(br);
+        document.getElementById('loginformh').appendChild(info);
       }
     },error=>{
-
+      
     });
 
    

@@ -72,6 +72,9 @@ button {
 button:focus{
   outline: 0;
 }
+input:focus{
+  border: 0px;
+}
 .inputUserIcon {
   position:absolute;
   top:68px;

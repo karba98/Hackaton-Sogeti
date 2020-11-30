@@ -20,9 +20,10 @@ export class ServiceUsers {
         console.log(user+"  "+password);
         let request = "/authenticate";
         let headers = new HttpHeaders({
-            'Content-Type': 'application/json',
+            'Content-Type': 'application/json; charset=utf-8',
             'user':user,
-            'password':password});
+            'password':password,
+            'Access-Control-Allow-Origin':'*','Vary':'Origin'});
         console.log("Entrando al servicio");
 
         console.log(headers);
