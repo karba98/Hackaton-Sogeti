@@ -1,5 +1,20 @@
-<div *ngIf="authenticated==true else Identificate">
-    <h1>Identificado sin exito</h1>
+<div id="container" *ngIf="authenticated==true else Identificate">
+    <div #searcher>
+        
+    </div>
+    <div #cards class="cards" *ngFor="let item of empleados">
+        <div class="flip-card">
+            <div class="flip-card-inner">
+              <div class="flip-card-front">
+               
+              </div>
+              <div class="flip-card-back">
+                
+              </div>
+            </div>
+          </div>
+    </div>
+    
 </div>
 <ng-template #Identificate>
     <h1>Identificate!!</h1>
