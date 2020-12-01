@@ -1,6 +1,8 @@
 <div id="container" *ngIf="authenticated==true else Identificate">
     <div #searcher>
-        
+        <p class="s">Nombre: <input name="search" id="search" type="search"></p>
+        <p class="s">Apellido: <input name="search" id="search" type="search"></p>
+        <p class="s">Segundo Apellido: <input name="search" id="search" type="search"></p>
     </div>
     <div #cards class="cards" *ngFor="let item of empleados">
         <div class="flip-card">
