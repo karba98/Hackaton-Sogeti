@@ -20,8 +20,4 @@ export class DatascreenComponent implements OnInit {
       this.empleados.push(1)
     }
   }
-  flip(card):void{
-    
-  }
-
 }
