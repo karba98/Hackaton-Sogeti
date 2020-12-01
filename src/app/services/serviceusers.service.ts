@@ -8,13 +8,24 @@ import {HttpHeaders} from '@angular/common/http';
 @Injectable()
 export class ServiceUsers {
 
-    private token:string;
+    private stringtoken:string;
     private url: string;
     constructor(private _httpService:HttpClient){
         this.url=Global.url;
-        this.token="";
+        this.stringtoken = "";
     }
     
+    setToken(token){
+        this.stringtoken =token;
+        console.log(this.stringtoken);
+        return token;
+    }
+    jobs(){
+        
+    }
+    users(){
+
+    }
 
     login (user, password):Observable <any>{
         console.log(user+"  "+password);

@@ -30,7 +30,11 @@ export class LoginscreenComponent implements OnInit {
     var password = this.pass.nativeElement.value;
 
     console.log(usuario+"  "+password);
+    
     this._service.login(usuario,password).subscribe(response=>{
+
+      this._service.setToken(response.token);
+      
       if(response.auth==true){
         this.active=true;
         //Mostramos los iconos y damos acceso a p2 (la pagina principal de busqueda de usuarios)
