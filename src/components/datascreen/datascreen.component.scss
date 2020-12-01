@@ -1,15 +1,28 @@
+#navimg{
+    margin-top: 10px;
+    width: 30px;
+    height:30px;
+    margin-right: 15px;
 
+}
+.label{
+    
+}
+.searchbar{
+    background-color: black;
+    padding: 20px;
+}
 p {
-    margin-bottom: 1.5em;
-    color:black;
+    margin:8px;
+    color:white;
     font-family: fantasy;
     padding: 6%;
+    font-size: 20px;
 }
 
 a {
-    text-decoration: none;
-    font-weight: 700;
-    color: #ff9;
+    width: 400px;
+    
 }
 
 #search {
@@ -35,17 +48,16 @@ a {
     width: 180px;
 }
 
-p.s {
+p {
     z-index: 4;
     position: relative;
     padding: 5px;
     line-height: 0;
     border-radius: 100px;
-    background: #b9ecfe;
-    background-image: -webkit-linear-gradient(#dbf6ff,#b9ecfe);
-    background-image: -moz-linear-gradient(#dbf6ff,#b9ecfe);
+    background-color: black ;
+
     display: inline-block;
-    box-shadow: inset 0 1px 0 rgba(255,255,255,.6), 0 2px 5px rgba(0,100,150,.4);
+  
 }
 
 p.s:hover {

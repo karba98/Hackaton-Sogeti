@@ -1,7 +1,9 @@
-<div #searcher style="background-color: black;">
-    <p class="s">Nombre: <input name="search" id="search" type="search"></p>
-    <p class="s">Apellido: <input name="search" id="search" type="search"></p>
-    <p class="s">Segundo Apellido: <input name="search" id="search" type="search"></p>
+
+<div #searcher class="searchbar">
+    <img id="navimg" src="./../../assets/images/search.png" alt="./../../assets/images/search.png"/>
+    <p style="margin-right: 20px;"> Busqueda por:</p>
+    <p class="label">Nombre: <input name="search" id="search" type="search"></p>
+    <p class="label">Apellido: <input name="search" id="search" type="search"></p>
 </div>
 <div id="container" *ngIf="authenticated==true else Identificate">
     
