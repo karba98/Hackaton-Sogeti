@@ -8,14 +8,16 @@
 <div id="container" *ngIf="authenticated==true else Identificate">
     
     <div #cards class="cards" *ngFor="let item of empleados">
-        <div class="flip-card">
+        <div class="flip-card " id="flip-card">
             <div class="flip-card-inner">
-              <div class="flip-card-front">
-               
-              </div>
-              <div class="flip-card-back">
-                
-              </div>
+                <div class="flip-card-front">
+                    <br/>
+                    <h1>Parte delantera</h1>
+                </div>
+                <div class="flip-card-back">
+                    <br/>
+                    <h1>Parte trasera</h1>
+                </div>
             </div>
           </div>
     </div>

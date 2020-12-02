@@ -12,12 +12,12 @@ export class ServiceUsers {
     constructor(private _httpService:HttpClient){
         this.url=Global.url;
     }
-    
-    jobs(tokenjobs){
-        console.log(tokenjobs);
+
+    getJobs(){
+        
     }
-    users(tokenusers){
-        console.log(tokenusers);
+    getUsers(){
+        
     }
 
     login (user, password):Observable <any>{

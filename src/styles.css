@@ -30,18 +30,9 @@ section {
 
 #p2 {
   left: 100%;
-  background: #FF5722;
+  background-image: url(./assets/images/woodfont.jpg);
 }
 
-#p3 {
-  left: 200%;
-  background: #593C1F;
-}
-
-#p4 {
-  left: 300%;
-  background: deeppink;
-}
 
 ul {
  position: fixed; 

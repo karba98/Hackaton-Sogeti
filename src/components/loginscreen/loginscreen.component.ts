@@ -1,6 +1,8 @@
+import { Global } from './../../global/global';
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { TimeoutError } from 'rxjs';
 import { ServiceUsers } from 'src/app/services/serviceusers.service';
+
 
 @Component({
   selector: 'app-loginscreen',
@@ -10,14 +12,14 @@ import { ServiceUsers } from 'src/app/services/serviceusers.service';
 export class LoginscreenComponent implements OnInit {
 
   public active:boolean;
-
+  disable:boolean;
   @ViewChild('user') user:ElementRef;
   @ViewChild('pass') pass:ElementRef;
 
   constructor(private _service:ServiceUsers) { 
     this.user = ElementRef.prototype;
     this.pass = ElementRef.prototype;
-
+    this.disable=false;
   }
 
   ngOnInit(): void {
@@ -31,53 +33,31 @@ export class LoginscreenComponent implements OnInit {
     var usuario = this.user.nativeElement.value;
     var password = this.pass.nativeElement.value;
 
-    console.log(password);
+    this.disable=true;
     if(usuario=="" || password==""){
       this.setErrorMessage("*Usuario o contraseña incorrectos");
     }else{
-      document.getElementById('userimp').setAttribute('readonly','true');
-      document.getElementById('passimp').setAttribute('readonly','true');
-
-      document.getElementById('btnlogin').setAttribute('disabled','disabled');
+      this.disable=false;
       this.subscribeToAuth(usuario,password);
     }
   
   }
   setErrorMessage(error:string){
-    try{
-      //seteamos el mensaje en rojo de error
-      document.getElementById('info').innerText=error;
-    }catch(Exception){
-      //si el mensaje no estaba creado, lo creamos
-      let br = document.createElement('br');
-      let info = document.createElement('a');
-      info.id="info";
-      info.style.color='red';
-      info.style.fontSize="15px"
-      info.innerText="*Usuario o contraseña incorrectos";
-
       document.getElementById('userimp').style.border = '1px solid #cc0033';
       document.getElementById('passimp').style.border = '1px solid #cc0033';
-
-      document.getElementById('userimp').setAttribute('enabled','enabled');
-      document.getElementById('passimp').setAttribute('enabled','enabled');
-
-      document.getElementById('loginformh').appendChild(br);
-      document.getElementById('loginformh').appendChild(info);
-      
-      document.getElementById('btnlogin').setAttribute('enabled','enabled');
-    }
+      document.getElementById('bicon').className="entypo-lock";
+      document.getElementById('info').innerText=error;
+      this.disable=false;
   }
   subscribeToAuth(usuario,password){
     document.getElementById('bicon').className="fa fa-circle-o-notch fa-spin";
-
-    document.getElementById('userimp').setAttribute('disabled','disabled');
-    document.getElementById('passimp').setAttribute('disabled','disabled');
     this._service.login(usuario,password).subscribe(response=>{
+      console.log(response);
       if(response.auth==true){
         this.active=true; //Damos acceso al menu pricipal
-        this._service.jobs(response.token);//guardamos el token recibido en el metodo jobs del service
-        this._service.users(response.token);//guardamos el token recibido en el metodo users del service
+
+        Global.token=response.token;
+
         //Mostramos los iconos y damos acceso a p2 (la pagina principal de busqueda de usuarios)
         document.getElementById('uno').style.visibility="visible";
         document.getElementById('dos').style.visibility="visible";

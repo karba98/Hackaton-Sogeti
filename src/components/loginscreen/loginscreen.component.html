@@ -7,9 +7,11 @@
   <div>
     <form #formlogin>
       <h2 id="loginformh"><span class="entypo-login"></span> Login</h2>
-      <button id="btnlogin" (click)="login()"><span id="bicon" class="entypo-lock"></span></button>
-      <input #user id="userimp" name = "user" type="text" class="user" placeholder="ursername"/>
-      <input #pass id="passimp" name = "pass" type="password" class="pass"placeholder="password"/>
+      <button id="btnlogin" (click)="login()" [disabled]="disable" ><span id="bicon" class="entypo-lock"></span></button>
+      <input #user id="userimp" name = "user" type="text"     [disabled]="disable" class="user" placeholder="ursername"/>
+      <input #pass id="passimp" name = "pass" type="password" [disabled]="disable" class="pass"placeholder="password"/>
+      <br/>
+      <a id="info" style="color: red;font-size: 15px;"></a>
     </form>
   </div>
   
