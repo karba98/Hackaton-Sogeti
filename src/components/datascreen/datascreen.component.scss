@@ -139,13 +139,13 @@ p.s:hover:after {
   
   /* Style the front side (fallback if image is missing) */
   .flip-card-front {
-    background-color: #bbb;
+    background-image: url(./../../assets/images/documento.png);
     color: black;
   }
   
   /* Style the back side */
   .flip-card-back {
-    background-color: dodgerblue;
+    background-image: url(./../../assets/images/documento.png);
     color: white;
     transform: rotateY(180deg);
   }
