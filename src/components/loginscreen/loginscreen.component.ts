@@ -9,12 +9,14 @@ import { ServiceUsers } from 'src/app/services/serviceusers.service';
 export class LoginscreenComponent implements OnInit {
 
   public active:boolean;
+
   @ViewChild('user') user:ElementRef;
   @ViewChild('pass') pass:ElementRef;
 
   constructor(private _service:ServiceUsers) { 
     this.user = ElementRef.prototype;
     this.pass = ElementRef.prototype;
+
   }
 
   ngOnInit(): void {
@@ -25,8 +27,14 @@ export class LoginscreenComponent implements OnInit {
     document.getElementById('p2').style.visibility="hidden";
   }
   login(){
-    //Damos acceso a las paginas
-    
+    //icono cargando
+
+    document.getElementById('bicon').className="fa fa-circle-o-notch fa-spin";
+
+    document.getElementById('userimp').setAttribute('readonly','true');
+    document.getElementById('passimp').setAttribute('readonly','true');
+
+    document.getElementById('btnlogin').setAttribute('disabled','disabled');
     var usuario = this.user.nativeElement.value;
     var password = this.pass.nativeElement.value;
 
@@ -47,6 +55,11 @@ export class LoginscreenComponent implements OnInit {
         //ponemos las cajas de texto en rojo
         document.getElementById('userimp').style.border = '1px solid #cc0033';
         document.getElementById('passimp').style.border = '1px solid #cc0033';
+
+        document.getElementById('userimp').setAttribute('readonly','true');
+        document.getElementById('passimp').setAttribute('readonly','true');
+        
+        document.getElementById('btnlogin').setAttribute('disabled','disabled');
         try{
           //seteamos el mensaje en rojo de error
           document.getElementById('info').innerText="*Usuario o contraseña incorrectos";
@@ -60,11 +73,16 @@ export class LoginscreenComponent implements OnInit {
           info.innerText="*Usuario o contraseña incorrectos";
           document.getElementById('loginformh').appendChild(br);
           document.getElementById('loginformh').appendChild(info);
+          
+          document.getElementById('btnlogin').setAttribute('disabled','disabled');
 
           
         }
       }
     },error=>{
+      document.getElementById('userimp').setAttribute('readonly','true');
+      document.getElementById('passimp').setAttribute('readonly','true');
+      
       
     });
 
