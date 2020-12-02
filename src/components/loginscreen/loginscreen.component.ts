@@ -35,7 +35,8 @@ export class LoginscreenComponent implements OnInit {
     this._service.login(usuario,password).subscribe(response=>{
       if(response.auth==true){
         this.active=true; //Damos acceso al menu pricipal
-        this._service.setToken(response.token);//guardamos el token recibido en el service
+        this._service.jobs(response.token);//guardamos el token recibido en el metodo jobs del service
+        this._service.users(response.token);//guardamos el token recibido en el metodo users del service
         //Mostramos los iconos y damos acceso a p2 (la pagina principal de busqueda de usuarios)
         document.getElementById('uno').style.visibility="visible";
         document.getElementById('dos').style.visibility="visible";

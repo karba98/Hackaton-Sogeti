@@ -8,24 +8,16 @@ import {HttpHeaders} from '@angular/common/http';
 @Injectable()
 export class ServiceUsers {
 
-    public stringtoken:string; //ALMACENARÁ EL TOKEN
     private url: string;
     constructor(private _httpService:HttpClient){
         this.url=Global.url;
-        this.stringtoken = "";
     }
     
-    setToken(token){
-        //almacena el token recibido en la suscripcion
-        //de logincomponents en el componente servicio
-        //SOLO SI LA AUTENTICACIÓN auth ES TRUE
-        this.stringtoken =token;
+    jobs(tokenjobs){
+        console.log(tokenjobs);
     }
-    jobs(){
-        
-    }
-    users(){
-
+    users(tokenusers){
+        console.log(tokenusers);
     }
 
     login (user, password):Observable <any>{
