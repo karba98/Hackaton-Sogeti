@@ -1,4 +1,5 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { TimeoutError } from 'rxjs';
 import { ServiceUsers } from 'src/app/services/serviceusers.service';
 
 @Component({
@@ -27,19 +28,51 @@ export class LoginscreenComponent implements OnInit {
     document.getElementById('p2').style.visibility="hidden";
   }
   login(){
-    //icono cargando
-
-    document.getElementById('bicon').className="fa fa-circle-o-notch fa-spin";
-
-    document.getElementById('userimp').setAttribute('readonly','true');
-    document.getElementById('passimp').setAttribute('readonly','true');
-
-    document.getElementById('btnlogin').setAttribute('disabled','disabled');
     var usuario = this.user.nativeElement.value;
     var password = this.pass.nativeElement.value;
 
-    console.log(usuario+"  "+password);
-    
+    console.log(password);
+    if(usuario=="" || password==""){
+      this.setErrorMessage("*Usuario o contraseña incorrectos");
+    }else{
+      document.getElementById('userimp').setAttribute('readonly','true');
+      document.getElementById('passimp').setAttribute('readonly','true');
+
+      document.getElementById('btnlogin').setAttribute('disabled','disabled');
+      this.subscribeToAuth(usuario,password);
+    }
+  
+  }
+  setErrorMessage(error:string){
+    try{
+      //seteamos el mensaje en rojo de error
+      document.getElementById('info').innerText=error;
+    }catch(Exception){
+      //si el mensaje no estaba creado, lo creamos
+      let br = document.createElement('br');
+      let info = document.createElement('a');
+      info.id="info";
+      info.style.color='red';
+      info.style.fontSize="15px"
+      info.innerText="*Usuario o contraseña incorrectos";
+
+      document.getElementById('userimp').style.border = '1px solid #cc0033';
+      document.getElementById('passimp').style.border = '1px solid #cc0033';
+
+      document.getElementById('userimp').setAttribute('enabled','enabled');
+      document.getElementById('passimp').setAttribute('enabled','enabled');
+
+      document.getElementById('loginformh').appendChild(br);
+      document.getElementById('loginformh').appendChild(info);
+      
+      document.getElementById('btnlogin').setAttribute('enabled','enabled');
+    }
+  }
+  subscribeToAuth(usuario,password){
+    document.getElementById('bicon').className="fa fa-circle-o-notch fa-spin";
+
+    document.getElementById('userimp').setAttribute('disabled','disabled');
+    document.getElementById('passimp').setAttribute('disabled','disabled');
     this._service.login(usuario,password).subscribe(response=>{
       if(response.auth==true){
         this.active=true; //Damos acceso al menu pricipal
@@ -52,42 +85,12 @@ export class LoginscreenComponent implements OnInit {
         //document.getElementById('p2').style.transform= 'translateX(-90%)';
         //HAY QUE HACER AQUI UN ROUTERLINK O HREF A #T2 PARA QUE SE ACTIVE LA ANIMACION
       }else{
-        //ponemos las cajas de texto en rojo
-        document.getElementById('userimp').style.border = '1px solid #cc0033';
-        document.getElementById('passimp').style.border = '1px solid #cc0033';
-
-        document.getElementById('userimp').setAttribute('readonly','true');
-        document.getElementById('passimp').setAttribute('readonly','true');
-        
-        document.getElementById('btnlogin').setAttribute('disabled','disabled');
-        try{
-          //seteamos el mensaje en rojo de error
-          document.getElementById('info').innerText="*Usuario o contraseña incorrectos";
-        }catch(Exception){
-          //si el mensaje no estaba creado, lo creamos
-          let br = document.createElement('br');
-          let info = document.createElement('a');
-          info.id="info";
-          info.style.color='red';
-          info.style.fontSize="15px"
-          info.innerText="*Usuario o contraseña incorrectos";
-          document.getElementById('loginformh').appendChild(br);
-          document.getElementById('loginformh').appendChild(info);
-          
-          document.getElementById('btnlogin').setAttribute('disabled','disabled');
-
-          
-        }
+        this.setErrorMessage("*Usuario o contraseña incorrectos");
       }
     },error=>{
-      document.getElementById('userimp').setAttribute('readonly','true');
-      document.getElementById('passimp').setAttribute('readonly','true');
-      
+      this.setErrorMessage("*Error dse conexión, inéntelo más tarde");
       
     });
-
-   
-  
   }
 
 }
