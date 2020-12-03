@@ -1,9 +1,11 @@
 
 <div #searcher class="searchbar">
-    <img id="navimg" src="./../../assets/images/search.png" alt="./../../assets/images/search.png"/>
+    <img (click)="search()" id="navimg" src="./../../assets/images/search.png" alt="./../../assets/images/search.png"/>
     <p style="margin-right: 20px;"> Busqueda por:</p>
-    <p class="label">Nombre: <input name="search" id="search" type="search"></p>
-    <p class="label">Apellido: <input name="search" id="search" type="search"></p>
+    <p class="label">Nombre: <input #name name="name" id="search" type="search"></p>
+    <p class="label">Apellido: <input #firstname name="firstname" id="search" type="search"></p>
+    <p class="label">Segundo Apellido: <input #secondname name="secondname" id="search" type="search"></p>
+   
 </div>
 <div id="container" *ngIf="authenticated==true else Identificate">
     
