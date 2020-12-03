@@ -1,3 +1,9 @@
+
+  @font-face {
+    font-family: "FBIOldReport-Regular";
+    src: local("FBIOldReport-Regular"), url(./../../assets//fonts/FBIOldReport-Regular.ttf) ;
+    }
+
 #navimg{
     margin-top: 10px;
     width: 30px;
@@ -11,13 +17,14 @@
 .searchbar{
     background-color: black;
     padding: 20px;
+    
 }
 p {
+    font-family: "FBIOldReport-Regular";
     margin:8px;
     color:white;
-    font-family: fantasy;
     padding: 6%;
-    font-size: 20px;
+    font-size: 50px;
 }
 
 a {
@@ -107,8 +114,8 @@ p.s:hover:after {
     margin:10px;
     float: left;
     background-color: transparent;
-    width: 400px;
-    height: 600px;
+    width: 600px;
+    height: 800px;
     border: 0;
     perspective: 1000px; /* Remove this if you don't want the 3D effect */
   }
@@ -136,28 +143,93 @@ p.s:hover:after {
     -webkit-backface-visibility: hidden; /* Safari */
     backface-visibility: hidden;
   }
-  @font-face {
-    font-family: "Allura-Regular";
-    src: local("Oxygen"), url(./../../assets//fonts/Allura-Regular.otf) format("truetype");
-}
+
   /* Style the front side (fallback if image is missing) */
   .flip-card-front {
     background-image: url(./../../assets/images/documento.png);
-    background-size: 400px 600px;
+    background-size: 600px 800px;
     color: black;
-    font-family: "Allura-Regular";
+    font-family: "FBIOldReport-Regular";
     
   }
   
   /* Style the back side */
   .flip-card-back {
     background-image: url(./../../assets/images/documentoflipped.png);
-    background-size: 400px 600px;
+    background-size: 600px 800px;
     color: black;
-    font-family: "Allura-Regular";
+    font-family: "FBIOldReport-Regular";
     transform: rotateY(180deg);
   }
 
+//-------------------------------------------------------------------------
+//TEXT STYLES
+.headerDoc{
+    float: left;
+    margin-left: 110px;
+    margin-top:50px;
+    font-size: 70px;
+    transform: rotate(8deg);
+    text-decoration: underline;
+    font-family: "FBIOldReport-Regular";
+}
 
+.headerDocA{
+    font-family: "FBIOldReport-Regular";
+    float: left;
+    margin-left: 100px;
+    font-size: 60px;
+    text-align: left;
+    transform: rotate(8deg);
+}
+.header2Doc{
+    font-family: "FBIOldReport-Regular";
+    float: left;
+    margin-left: 130px;
+    margin-bottom: 5px;
+    text-decoration: underline,solid;
+    font-size: 80px;
+    text-align: left;
+    transform: rotate(-16deg);
+}
 
+#elemDocContainer{
+    float: left;
+    margin-left: 55px;
+    text-align: left;
+    transform: rotate(-16deg);
+}
+#elemDocContainer a{
+    float: left;
+    font-family: "FBIOldReport-Regular";
+    font-size: 2.8em;
+    margin-left: 60px;
+}
+.backHeader{
+    float: left;
+    margin-left: 110px; 
+    margin-top:50px;
+    font-size: 70px;
+    transform: rotate(-4deg);
+    text-align: left;
+    text-decoration: underline;
+    font-family: "FBIOldReport-Regular";
+}
+#jobContainer{
+    float: left;
+    margin-left: 55px;
+    text-align: left;
+    transform: rotate(-4deg);
+}
+#jobContainer a{
+    float: left;
+    font-family: "FBIOldReport-Regular";
+    font-size: 2.8em;
+    margin-left: 40px;
+}
+#vehicleTable{
+    font-size: 3em;
+    transform: rotate(-4deg);
+    margin-left: 90px;
+}
   
