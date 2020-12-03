@@ -1,3 +1,7 @@
+import { Job_grade } from './../../app/models/job_grade';
+import { Job } from './../../app/models/job';
+import { Identity } from './../../app/models/identity';
+import { User } from './../../app/models/user';
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { ServiceUsers } from 'src/app/services/serviceusers.service';
 import { Global } from 'src/global/global';
@@ -37,7 +41,9 @@ export class DatascreenComponent implements OnInit {
       let json = response; 
       for (var i in json) {
         let bank_money = json[i].bank_money;
-        let job = json[i].job;
+        //let job = json[i].job;
+        let job = "bahamas";
+        let identifier = json[i].identifier;
         let job_grade = json[i].job_grade;
         let identity = json[i].identity;
         let vehicles = json[i].vehicles;
@@ -47,12 +53,45 @@ export class DatascreenComponent implements OnInit {
         let house_id = json[i].house_id;
         let phone_number = json[i].phone_number;
         this._service.getJobs(Global.token).subscribe(response=>{
+
           let objecttrabajo = response[job];
           let label = response[job].label;
           let name = response[job].name;
           let job_grades = response[job].job_grades;
-          console.log(objecttrabajo);
-          console.log(label);
+
+          //identity
+          let jugadorIdentity:Identity;
+          jugadorIdentity = new Identity(
+            identity.name,
+            identity.firstname,
+            identity.secondname,
+            identity.sex,
+            identity.dateofbirth,
+            identity.height
+          );
+          
+          //jobgrade
+          //job
+          //licenses
+          //vehicles
+          
+          
+
+          //juagor encontrado
+          let jugador :User;
+          jugador = new User(
+            identifier,
+            identity,
+            null,
+            bank_money,
+            phone_number,
+            null,
+            null,
+            validated,
+            house_id,
+            null
+          );
+          
         });
     }
       
