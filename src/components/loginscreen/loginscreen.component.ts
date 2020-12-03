@@ -49,6 +49,7 @@ export class LoginscreenComponent implements OnInit {
       document.getElementById('passimp').style.border = '1px solid #cc0033';
       document.getElementById('bicon').className="entypo-lock";
       document.getElementById('info').innerText=error;
+      this.pass.nativeElement.value="";
       this.disable=false;
   }
   subscribeToAuth(usuario,password){
