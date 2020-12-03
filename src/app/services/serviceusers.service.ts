@@ -13,11 +13,25 @@ export class ServiceUsers {
         this.url=Global.url;
     }
 
-    getJobs(){
-        
+    getJobs(accesstoken){
+        let request = "/jobs";
+        let headers = new HttpHeaders({
+            'Content-Type': 'application/json; charset=utf-8',
+            'access-token':accesstoken,
+            'Access-Control-Allow-Origin':'*','Vary':'Origin'});
+            
+        console.log("Entrando al servicio jobs");
+        return this._httpService.get(this.url+request,{headers:headers});
     }
-    getUsers(){
-        
+    getUsers(accesstoken){
+        let request = "/users";
+        let headers = new HttpHeaders({
+            'Content-Type': 'application/json; charset=utf-8',
+            'access-token':accesstoken,
+            'Access-Control-Allow-Origin':'*','Vary':'Origin'});
+            
+        console.log("Entrando al servicio users");
+        return this._httpService.get(this.url+request,{headers:headers});
     }
 
     login (user, password):Observable <any>{
@@ -29,7 +43,7 @@ export class ServiceUsers {
             'password':password,
             'Access-Control-Allow-Origin':'*','Vary':'Origin'});
         console.log("Entrando al servicio");
-
+        
         console.log(headers);
 
         return this._httpService.post(this.url+request,null,{headers:headers});
