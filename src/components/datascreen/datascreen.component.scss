@@ -1,3 +1,9 @@
+
+  @font-face {
+    font-family: "Allura-Regular";
+    src: local("Oxygen"), url(./../../assets//fonts/Allura-Regular.otf) format("truetype");
+    }
+
 #navimg{
     margin-top: 10px;
     width: 30px;
@@ -11,13 +17,14 @@
 .searchbar{
     background-color: black;
     padding: 20px;
+    
 }
 p {
+    font-family: "Allura-Regular";
     margin:8px;
     color:white;
-    font-family: fantasy;
     padding: 6%;
-    font-size: 20px;
+    font-size: 30px;
 }
 
 a {
@@ -107,8 +114,8 @@ p.s:hover:after {
     margin:10px;
     float: left;
     background-color: transparent;
-    width: 400px;
-    height: 600px;
+    width: 600px;
+    height: 800px;
     border: 0;
     perspective: 1000px; /* Remove this if you don't want the 3D effect */
   }
@@ -136,14 +143,11 @@ p.s:hover:after {
     -webkit-backface-visibility: hidden; /* Safari */
     backface-visibility: hidden;
   }
-  @font-face {
-    font-family: "Allura-Regular";
-    src: local("Oxygen"), url(./../../assets//fonts/Allura-Regular.otf) format("truetype");
-}
+
   /* Style the front side (fallback if image is missing) */
   .flip-card-front {
     background-image: url(./../../assets/images/documento.png);
-    background-size: 400px 600px;
+    background-size: 600px 800px;
     color: black;
     font-family: "Allura-Regular";
     
@@ -152,12 +156,20 @@ p.s:hover:after {
   /* Style the back side */
   .flip-card-back {
     background-image: url(./../../assets/images/documentoflipped.png);
-    background-size: 400px 600px;
+    background-size: 600px 800px;
     color: black;
     font-family: "Allura-Regular";
     transform: rotateY(180deg);
   }
 
-
+//-------------------------------------------------------------------------
+//TEXT STYLES
+.headerDoc{
+    float: left;
+    margin-left: 110px;
+    margin-top:30px;
+    font-size: 50px;
+    transform: rotate(6deg);
+}
 
   
