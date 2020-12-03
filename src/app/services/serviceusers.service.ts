@@ -23,11 +23,14 @@ export class ServiceUsers {
         console.log("Entrando al servicio jobs");
         return this._httpService.get(this.url+request,{headers:headers});
     }
-    getUsers(accesstoken){
+    getUsers(accesstoken,name,firstname,secondname){
         let request = "/users";
         let headers = new HttpHeaders({
             'Content-Type': 'application/json; charset=utf-8',
             'access-token':accesstoken,
+            'name':name,
+            'firstname': firstname,
+            'secondname': secondname,
             'Access-Control-Allow-Origin':'*','Vary':'Origin'});
             
         console.log("Entrando al servicio users");
