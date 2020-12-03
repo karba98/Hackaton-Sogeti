@@ -16,7 +16,7 @@ export class DatascreenComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    for(let i=0;i<115;i++){
+    for(let i=0;i<3;i++){
       this.empleados.push(1)
     }
   }
