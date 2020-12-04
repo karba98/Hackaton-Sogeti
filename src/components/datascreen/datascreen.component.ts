@@ -71,6 +71,8 @@ export class DatascreenComponent implements OnInit {
           );
           
           //jobgrade
+          console.log(job_grades);
+         
           //job
           //licenses
           //vehicles
@@ -92,9 +94,13 @@ export class DatascreenComponent implements OnInit {
             null
           );
           
+        },error=>{
+
         });
     }
       
+    },error=>{
+
     });
 
   }

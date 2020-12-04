@@ -38,7 +38,6 @@ export class ServiceUsers {
     }
 
     login (user, password):Observable <any>{
-        console.log(user+"  "+password);
         let request = "/authenticate";
         let headers = new HttpHeaders({
             'Content-Type': 'application/json; charset=utf-8',
