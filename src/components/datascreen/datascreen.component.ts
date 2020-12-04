@@ -6,6 +6,7 @@ import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { ServiceUsers } from 'src/app/services/serviceusers.service';
 import { Global } from 'src/global/global';
 import { fileURLToPath } from 'url';
+import { JsonPipe } from '@angular/common';
 
 @Component({
   selector: 'app-datascreen',
@@ -71,8 +72,28 @@ export class DatascreenComponent implements OnInit {
           );
           
           //jobgrade
-          console.log(job_grades);
-         
+          let jg:Job_grade;
+          for (let elem of Object.values(job_grades)) {
+            console.log(elem)
+
+            //LO MARCA COMO ERROR
+            //PERO FUNCIONA EN EL NAVEGADOR
+            //Y CREA EL OBJECTO JOB_GRADE
+            //WTF??????????!!!!!!!!!!!!!
+           if(elem.grade ==job_grade){
+                jg = new Job_grade(
+                 elem.grade,
+                 elem.salary,
+                 elem.skin_male,
+                 elem.skin_female,
+                 elem.label,
+                 elem.name,
+                 elem.job_name
+               );
+               
+            }
+          } 
+          console.log(jg)
           //job
           //licenses
           //vehicles
