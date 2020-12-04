@@ -42,11 +42,15 @@ export class DatascreenComponent implements OnInit {
     //PRIMERO OBTENEMOS JOBS y actualizamos la lista
     this.users.splice(0,this.users.length)
     this.getJobs();
-    
+ 
     let name:String = this.name.nativeElement.value;
     let firstname:String = this.firstname.nativeElement.value;
     let secondname:String = this.secondname.nativeElement.value;
 
+
+    this.getUser(name,firstname,secondname);
+  }
+  getUser(name,firstname,secondname){
     this._service.getUsers(Global.token,name,firstname,secondname).subscribe(response=>{
       let json = response; 
       for (var i in json) {
