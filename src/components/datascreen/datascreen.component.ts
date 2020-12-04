@@ -42,7 +42,6 @@ export class DatascreenComponent implements OnInit {
     let firstname:String = this.firstname.nativeElement.value;
     let secondname:String = this.secondname.nativeElement.value;
     this._service.getUsers(Global.token,name,firstname,secondname).subscribe(response=>{
-      console.log(response);
       let json = response; 
       for (var i in json) {
         let bank_money = json[i].bank_money;
@@ -60,6 +59,12 @@ export class DatascreenComponent implements OnInit {
 
         let userJOb:Job = this.getJob(job,job_grade);
 
+        let userlicenses:Map<String,String> =new Map<String,String>()
+        for(let elemKey of Object.keys(licenses)){
+          for (let elemvalue of Object.values(licenses)) {
+            userlicenses.set(elemKey,elemvalue.toString());
+          }
+        }
         //vehicles
         let userVehicles: Map<String,Vehicle> = new Map<String,Vehicle>();
         for(let elemKey of Object.keys(vehicles)){
@@ -78,7 +83,7 @@ export class DatascreenComponent implements OnInit {
           userJOb,
           bank_money,
           phone_number,
-          licenses,
+          userlicenses,
           phone_calls,
           validated,
           house_id,
@@ -86,6 +91,7 @@ export class DatascreenComponent implements OnInit {
         );
 
         this.users.push(jugador)
+        console.log(jugador);
     }
       
     },error=>{//error de peticion user
@@ -94,6 +100,7 @@ export class DatascreenComponent implements OnInit {
 
   }
   getJob(job: any,job_grade:any) {
+    let userJob:Job;
     this._service.getJobs(Global.token).subscribe(response=>{
 
       let objecttrabajo = response[job];//filtro de job
@@ -113,13 +120,12 @@ export class DatascreenComponent implements OnInit {
 
       } 
       //job
-      let userJob:Job = new Job(label,name,userJobGrade);
-      console.log(userJob);
+      userJob = new Job(label,name,userJobGrade);
       
     },error=>{//error de peticion job
 
     });
-    return job;
+    return userJob;
   }
 
 }

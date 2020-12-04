@@ -23,7 +23,7 @@
                         <a>Bank: {{user.bank_money}}<span style="font-size: 0.5em;font-family: 'Courier New', Courier, monospace;">&#36;</span></a><br/>
                         <a>Phone: {{user.phone_number}}</a><br/>
                         <a>Licences: </a>
-                        <div *ngFor="let license of user.licenses" style="margin-left: 20px;">
+                        <div *ngFor="let license of user.licenses.values()" style="margin-left: 20px;">
                             <a>{{license}}</a>
                             
                         </div>
