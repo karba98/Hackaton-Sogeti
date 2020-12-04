@@ -76,11 +76,8 @@ export class DatascreenComponent implements OnInit {
             for (let elem of Object.values(j.Job_grades)) {
               let jobgradeObject = elem as Job_grade;
               //jobgradeObject.label= this.sinDiacriticos(jobgradeObject.label)
-              console.log(jobgradeObject.label);
               if(jobgradeObject.grade ==job_grade){
                 userJob = new Job(this.sinDiacriticos(j.label),j.name,null,jobgradeObject);
-                //userJob.Job_grade.label= this.sinDiacriticos(userJob.Job_grade.label)
-                console.log(userJob.Job_grade.label);
               }
               
             }
@@ -126,7 +123,6 @@ export class DatascreenComponent implements OnInit {
         );
 
         this.users.push(jugador)
-        console.log(jugador);
     }
       
     },error=>{//error de peticion user

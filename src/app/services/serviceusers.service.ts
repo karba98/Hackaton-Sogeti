@@ -19,8 +19,7 @@ export class ServiceUsers {
             'Content-Type': 'application/json; charset=utf-8',
             'access-token':accesstoken,
             'Access-Control-Allow-Origin':'*','Vary':'Origin'});
-            
-        console.log("Entrando al servicio jobs");
+
         return this._httpService.get(this.url+request,{headers:headers});
     }
     getUsers(accesstoken,name,firstname,secondname){
@@ -33,7 +32,6 @@ export class ServiceUsers {
             'secondname': secondname,
             'Access-Control-Allow-Origin':'*','Vary':'Origin'});
             
-        console.log("Entrando al servicio users");
         return this._httpService.get(this.url+request,{headers:headers});
     }
 
@@ -43,9 +41,7 @@ export class ServiceUsers {
             'Content-Type': 'application/json; charset=utf-8',
             'user':user,
             'password':password,
-            'Access-Control-Allow-Origin':'*','Vary':'Origin'});
-        console.log("Entrando al servicio");
-        
+            'Access-Control-Allow-Origin':'*','Vary':'Origin'});        
         console.log(headers);
 
         return this._httpService.post(this.url+request,null,{headers:headers});
