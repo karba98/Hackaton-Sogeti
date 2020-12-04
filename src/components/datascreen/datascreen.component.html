@@ -23,18 +23,18 @@
                         <a>Bank: {{user.bank_money}}<span style="font-size: 0.5em;font-family: 'Courier New', Courier, monospace;">&#36;</span></a><br/>
                         <a>Phone: {{user.phone_number}}</a><br/>
                         <a>Licences: </a>
-                        <div *ngFor="let license of user.licenses.values()" style="margin-left: 20px;">
-                            <a>{{license}}</a>
+                        <div *ngFor="let lic of user.licenses | keyvalue" style="margin-left: 20px;">
+                            <a>{{lic.key}} - {{lic.value}}</a>
                             
                         </div>
                     </div>
                 </div>
                 <div class="flip-card-back">
                     <br/>
-                    <a class="backHeader">Empleo</a>
+                    <a class="backHeader">Job</a>
                     <div id="jobContainer">
-                        <a>Name:</a>
-                        <a>label:</a>
+                        <a>Company:{{user.job.name}}</a>
+                        <a>name: </a>
                         <a>Grade:</a> 
                         <a>Salary:</a> 
                     </div>
@@ -43,10 +43,9 @@
                             <th>Vehicles</th>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td>qqq</td>
-                                <td>qqq</td>
-                                <td>qqq</td>
+                            <tr *ngFor="let v of user.vehicles | keyvalue">
+                                <td>{{v.value.model}}</td>
+                                <td>{{v.value.plate}}</td>
                             </tr>
                            
                         </tbody>

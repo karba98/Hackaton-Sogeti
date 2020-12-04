@@ -8,6 +8,7 @@ import { ServiceUsers } from 'src/app/services/serviceusers.service';
 import { Global } from 'src/global/global';
 import { fileURLToPath } from 'url';
 import { JsonPipe } from '@angular/common';
+import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 
 @Component({
   selector: 'app-datascreen',
@@ -19,28 +20,33 @@ export class DatascreenComponent implements OnInit {
   @ViewChild('name') name :ElementRef;
   @ViewChild('firstname') firstname :ElementRef;
   @ViewChild('secondname') secondname :ElementRef;
-  public empleados : Array<Number>
 
   public users:Array<User>;
+  public jobs : Array<Job>;
+
   authenticated:boolean
   constructor(private _service:ServiceUsers) { 
     this.authenticated=true;
-    this.empleados = new Array<Number>();
+
     this.name = ElementRef.prototype;
     this.firstname = ElementRef.prototype;
     this.secondname = ElementRef.prototype;
     this.users = new Array<User>();
+    this.jobs = new Array<Job>();
   }
 
   ngOnInit(): void {
-    for(let i=0;i<3;i++){
-      this.empleados.push(1)
-    }
+   
   }
   search(){
+    //PRIMERO OBTENEMOS JOBS y actualizamos la lista
+    this.users.splice(0,this.users.length)
+    this.getJobs();
+    
     let name:String = this.name.nativeElement.value;
     let firstname:String = this.firstname.nativeElement.value;
     let secondname:String = this.secondname.nativeElement.value;
+
     this._service.getUsers(Global.token,name,firstname,secondname).subscribe(response=>{
       let json = response; 
       for (var i in json) {
@@ -57,8 +63,29 @@ export class DatascreenComponent implements OnInit {
         let house_id = json[i].house_id;
         let phone_number = json[i].phone_number;
 
-        let userJOb:Job = this.getJob(job,job_grade);
+        let userJob:Job;
+        //let userJobGrade:Job_grade = null;
 
+        for(let j of this.jobs){
+          if(j.name == job){
+            for (let elem of Object.values(j.Job_grades)) {
+              let jobgradeObject = elem as Job_grade;
+              if(jobgradeObject.grade ==job_grade){
+              }
+              userJob = new Job(j.label,j.name,null,jobgradeObject);
+              console.log(userJob);
+            }
+          }
+        }
+
+        let useridentity:Identity = new Identity(
+          identity.name,
+          identity.firstname,
+          identity.secondname,
+          identity.sex,
+          identity.dateofbirth,
+          identity.height
+          );
         let userlicenses:Map<String,String> =new Map<String,String>()
         for(let elemKey of Object.keys(licenses)){
           for (let elemvalue of Object.values(licenses)) {
@@ -74,13 +101,12 @@ export class DatascreenComponent implements OnInit {
             userVehicles.set(vehiclename,vehicle);
           }
         }
-
         //juagor encontrado
         let jugador :User;
         jugador = new User(
           identifier,
-          identity,
-          userJOb,
+          useridentity,
+          userJob,
           bank_money,
           phone_number,
           userlicenses,
@@ -99,30 +125,28 @@ export class DatascreenComponent implements OnInit {
     });
 
   }
-  getJob(job: any,job_grade:any) {
+  getJobs() {
+
+    this.jobs.splice(0,this.jobs.length);
+
     let userJob:Job;
     this._service.getJobs(Global.token).subscribe(response=>{
 
-      let objecttrabajo = response[job];//filtro de job
-      let label = objecttrabajo.label;
-      let name = objecttrabajo.name;
-      let job_grades = objecttrabajo.job_grades;
+      for(var i in response){
+         let objecttrabajo = response[i];//filtro de job
+        let label = objecttrabajo.label;
+        let name = objecttrabajo.name;
+        let job_grades = objecttrabajo.job_grades;
+        let JobGrades:Array<Job_grade> = new Array<Job_grade>();
 
-      
-      
-      //jobgrade
-      let userJobGrade:Job_grade//lo que meteremos en objeto job
-      for (let elem of Object.values(job_grades)) {
-        let jobgradeObject = elem as Job_grade;//cada jobgrade de array job_grades
-       if(jobgradeObject.grade ==job_grade){//si el numero grade es el mismo que el del user recibido
-        userJobGrade = jobgradeObject;
+        for (let elem of Object.values(job_grades)) {
+          let jobgradeObject = elem as Job_grade;
+          JobGrades.push(jobgradeObject);
         }
-
-      } 
-      //job
-      userJob = new Job(label,name,userJobGrade);
+        userJob = new Job(label,name,JobGrades,null);
+        this.jobs.push(userJob);
       
-    },error=>{//error de peticion job
+    }},error=>{//error de peticion job
 
     });
     return userJob;
