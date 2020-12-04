@@ -42,8 +42,8 @@ export class DatascreenComponent implements OnInit {
       let json = response; 
       for (var i in json) {
         let bank_money = json[i].bank_money;
-        //let job = json[i].job;
-        let job = "bahamas";
+        let job = json[i].job;
+        
         let identifier = json[i].identifier;
         let job_grade = json[i].job_grade;
         let identity = json[i].identity;
@@ -53,77 +53,64 @@ export class DatascreenComponent implements OnInit {
         let validated = json[i].validated;
         let house_id = json[i].house_id;
         let phone_number = json[i].phone_number;
-        this._service.getJobs(Global.token).subscribe(response=>{
 
-          let objecttrabajo = response[job];
-          let label = response[job].label;
-          let name = response[job].name;
-          let job_grades = response[job].job_grades;
+        let userJOb:Job = this.getJob(job,job_grade);
+        //licenses
 
-          //identity
-          let jugadorIdentity:Identity;
-          jugadorIdentity = new Identity(
-            identity.name,
-            identity.firstname,
-            identity.secondname,
-            identity.sex,
-            identity.dateofbirth,
-            identity.height
-          );
-          
-          //jobgrade
-          let jg:Job_grade;
-          for (let elem of Object.values(job_grades)) {
-            console.log(elem)
+        //vehicles
+        
+        
 
-            //LO MARCA COMO ERROR
-            //PERO FUNCIONA EN EL NAVEGADOR
-            //Y CREA EL OBJECTO JOB_GRADE
-            //WTF??????????!!!!!!!!!!!!!
-           if(elem.grade ==job_grade){
-                jg = new Job_grade(
-                 elem.grade,
-                 elem.salary,
-                 elem.skin_male,
-                 elem.skin_female,
-                 elem.label,
-                 elem.name,
-                 elem.job_name
-               );
-               
-            }
-          } 
-          console.log(jg)
-          //job
-          //licenses
-          //vehicles
-          
-          
+        //juagor encontrado
+        let jugador :User;
+        jugador = new User(
+          identifier,
+          identity,
+          userJOb,
+          bank_money,
+          phone_number,
+          licenses,
+          phone_calls,
+          validated,
+          house_id,
+          vehicles
+        );
 
-          //juagor encontrado
-          let jugador :User;
-          jugador = new User(
-            identifier,
-            identity,
-            null,
-            bank_money,
-            phone_number,
-            null,
-            null,
-            validated,
-            house_id,
-            null
-          );
-          
-        },error=>{
-
-        });
+        console.log(jugador);
     }
       
-    },error=>{
+    },error=>{//error de peticion user
 
     });
 
+  }
+  getJob(job: any,job_grade:any) {
+    this._service.getJobs(Global.token).subscribe(response=>{
+
+      let objecttrabajo = response[job];//filtro de job
+      let label = objecttrabajo.label;
+      let name = objecttrabajo.name;
+      let job_grades = objecttrabajo.job_grades;
+
+      
+      
+      //jobgrade
+      let userJobGrade:Job_grade//lo que meteremos en objeto job
+      for (let elem of Object.values(job_grades)) {
+        let jobgradeObject = elem as Job_grade;//cada jobgrade de array job_grades
+       if(jobgradeObject.grade ==job_grade){//si el numero grade es el mismo que el del user recibido
+        userJobGrade = jobgradeObject;
+        }
+
+      } 
+      //job
+      let userJob:Job = new Job(label,name,userJobGrade);
+      console.log(userJob);
+      
+    },error=>{//error de peticion job
+
+    });
+    return job;
   }
 
 }
