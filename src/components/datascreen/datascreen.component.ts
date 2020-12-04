@@ -1,3 +1,4 @@
+import { Vehicle } from './../../app/models/vehicle';
 import { Job_grade } from './../../app/models/job_grade';
 import { Job } from './../../app/models/job';
 import { Identity } from './../../app/models/identity';
@@ -19,6 +20,8 @@ export class DatascreenComponent implements OnInit {
   @ViewChild('firstname') firstname :ElementRef;
   @ViewChild('secondname') secondname :ElementRef;
   public empleados : Array<Number>
+
+  public users:Array<User>;
   authenticated:boolean
   constructor(private _service:ServiceUsers) { 
     this.authenticated=true;
@@ -26,6 +29,7 @@ export class DatascreenComponent implements OnInit {
     this.name = ElementRef.prototype;
     this.firstname = ElementRef.prototype;
     this.secondname = ElementRef.prototype;
+    this.users = new Array<User>();
   }
 
   ngOnInit(): void {
@@ -55,11 +59,16 @@ export class DatascreenComponent implements OnInit {
         let phone_number = json[i].phone_number;
 
         let userJOb:Job = this.getJob(job,job_grade);
-        //licenses
 
         //vehicles
-        
-        
+        let userVehicles: Map<String,Vehicle> = new Map<String,Vehicle>();
+        for(let elemKey of Object.keys(vehicles)){
+          for (let elemvalue of Object.values(vehicles)) {
+          let vehicle = elemvalue as Vehicle;
+          let vehiclename = elemKey;
+            userVehicles.set(vehiclename,vehicle);
+          }
+        }
 
         //juagor encontrado
         let jugador :User;
@@ -73,10 +82,10 @@ export class DatascreenComponent implements OnInit {
           phone_calls,
           validated,
           house_id,
-          vehicles
+          userVehicles
         );
 
-        console.log(jugador);
+        this.users.push(jugador)
     }
       
     },error=>{//error de peticion user

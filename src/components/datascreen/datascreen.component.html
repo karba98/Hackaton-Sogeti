@@ -9,24 +9,23 @@
 </div>
 <div id="container" *ngIf="authenticated==true else Identificate">
     
-    <div #cards class="cards" *ngFor="let item of empleados">
+    <div #cards class="cards" *ngFor="let user of users">
         <div class="flip-card " id="flip-card">
             <div class="flip-card-inner">
                 <div class="flip-card-front">
                     <br/>
-                    <a class="headerDoc">Nombre Apellido</a>
-                    <a class="headerDocA" style="font-size: 49px;">Edad: 36</a>
-                    <a class="headerDocA" style="font-size: 49px;margin-left: 93px;">Sexo: M</a>
+                    <a class="headerDoc">{{user.identity.name}} {{user.identity.firstname}}  {{user.identity.secondname}}</a>
+                    <a class="headerDocA" style="font-size: 49px;">Birth Date: {{user.identity.dateofbirth}}</a>
+                    <a class="headerDocA" style="font-size: 49px;margin-left: 93px;">Sex: {{user.identity.sex}}</a>
 
                     <h3 class="header2Doc" style="font-size: 49px;margin-top: 10px;">Interesting Data</h3>
                     <div id="elemDocContainer">
-                        <a>Bank: 12<span style="font-size: 0.5em;font-family: 'Courier New', Courier, monospace;">&#36;</span></a><br/>
-                        <a>Phone: XXXXXXXX</a><br/>
+                        <a>Bank: {{user.bank_money}}<span style="font-size: 0.5em;font-family: 'Courier New', Courier, monospace;">&#36;</span></a><br/>
+                        <a>Phone: {{user.phone_number}}</a><br/>
                         <a>Licences: </a>
-                        <div style="margin-left: 20px;">
-                            <a>Licence: </a>
-                            <a>Licence: </a>
-                            <a>Licence: </a>
+                        <div *ngFor="let license of user.licenses" style="margin-left: 20px;">
+                            <a>{{license}}</a>
+                            
                         </div>
                     </div>
                 </div>
