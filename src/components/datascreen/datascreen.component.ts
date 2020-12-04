@@ -42,13 +42,14 @@ export class DatascreenComponent implements OnInit {
     //PRIMERO OBTENEMOS JOBS y actualizamos la lista
     this.users.splice(0,this.users.length)
     this.getJobs();
- 
+    
     let name:String = this.name.nativeElement.value;
     let firstname:String = this.firstname.nativeElement.value;
     let secondname:String = this.secondname.nativeElement.value;
 
-
-    this.getUser(name,firstname,secondname);
+    setTimeout(()=>{
+      this.getUser(name,firstname,secondname)
+    },500);
   }
   getUser(name,firstname,secondname){
     this._service.getUsers(Global.token,name,firstname,secondname).subscribe(response=>{
@@ -74,10 +75,14 @@ export class DatascreenComponent implements OnInit {
           if(j.name == job){
             for (let elem of Object.values(j.Job_grades)) {
               let jobgradeObject = elem as Job_grade;
+              //jobgradeObject.label= this.sinDiacriticos(jobgradeObject.label)
+              console.log(jobgradeObject.label);
               if(jobgradeObject.grade ==job_grade){
+                userJob = new Job(this.sinDiacriticos(j.label),j.name,null,jobgradeObject);
+                //userJob.Job_grade.label= this.sinDiacriticos(userJob.Job_grade.label)
+                console.log(userJob.Job_grade.label);
               }
-              userJob = new Job(j.label,j.name,null,jobgradeObject);
-              console.log(userJob);
+              
             }
           }
         }
@@ -129,6 +134,18 @@ export class DatascreenComponent implements OnInit {
     });
 
   }
+  sinDiacriticos = (function(){
+    let de = 'ÁÃÀÄÂÉËÈÊÍÏÌÎÓÖÒÔÚÜÙÛÑÇáãàäâéëèêíïìîóöòôúüùûñç',
+         a = 'AAAAAEEEEIIIIOOOOUUUUNCaaaaaeeeeiiiioooouuuunc',
+        re = new RegExp('['+de+']' , 'ug');
+
+    return texto =>
+        texto.replace(
+            re, 
+            match => a.charAt(de.indexOf(match))
+        );
+})();
+
   getJobs() {
 
     this.jobs.splice(0,this.jobs.length);
@@ -155,5 +172,7 @@ export class DatascreenComponent implements OnInit {
     });
     return userJob;
   }
+
+  
 
 }
