@@ -13,6 +13,8 @@ html, body, section, .page {
   -webkit-transition: all 1s cubic-bezier(.5, -0.005, 0.2, 1) !important;
   color: #fff;
   background-image: url(assets/images/wallpaper.png);
+  background-repeat: no-repeat;
+  background-size: 100%;
   overflow: hidden;
 }
 
