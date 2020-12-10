@@ -72,7 +72,7 @@ export class LoginscreenComponent implements OnInit {
         this.setErrorMessage("*Usuario o contraseña incorrectos");
       }
     },error=>{
-      this.setErrorMessage("*Error dse conexión, inéntelo más tarde");
+      this.setErrorMessage("*Error de conexión, inténtelo más tarde");
       
     });
   }
