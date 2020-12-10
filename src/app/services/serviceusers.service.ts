@@ -42,7 +42,6 @@ export class ServiceUsers {
             'user':user,
             'password':password,
             'Access-Control-Allow-Origin':'*','Vary':'Origin'});        
-        console.log(headers);
 
         return this._httpService.post(this.url+request,null,{headers:headers});
     }
